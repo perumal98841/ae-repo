@@ -29,7 +29,7 @@ resource "random_string" "suffix" {
 module "eks" {
   source          = "../../modules/eks"
   cluster_name    = local.cluster_name
-  cluster_version = "1.17"
+  cluster_version = "1.18"
   subnets         = module.authengine_poc_vpc.private_subnets
   vpc_id          = module.authengine_poc_vpc.vpc_id
 
