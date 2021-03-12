@@ -22,7 +22,7 @@ module "authengine_poc_vpc" {
     cidr    = "10.7.248.0/24"
     enable_dns_hostnames             = true
     enable_dns_support               = true
-    azs = ["us-east-1a","us-east-1b"]
+    azs = ["us-east-1a","us-east-1b","us-east-1c"]
     public_subnets = ["10.7.248.0/27","10.7.248.32/27","10.7.248.64/27"]
     private_subnets = ["10.7.248.96/27","10.7.248.128/27","10.7.248.160/27"]
 
