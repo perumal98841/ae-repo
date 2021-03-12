@@ -42,3 +42,22 @@ module "eks" {
     },
   ]
 }
+
+node_groups = {
+    example = {
+      desired_capacity = 1
+      max_capacity     = 10
+      min_capacity     = 1
+
+      instance_types = ["t3a.small"]
+      capacity_type  = "SPOT"
+      k8s_labels = {
+        Environment = "test"
+        GithubRepo  = "terraform-aws-eks"
+        GithubOrg   = "terraform-aws-modules"
+      }
+      additional_tags = {
+        ExtraTag = "example"
+      }
+    }
+  }
