@@ -43,6 +43,7 @@ locals {
       local.auth_launch_template_worker_roles,
       local.auth_worker_roles,
       module.node_groups.aws_auth_roles,
+      module.fargate.aws_auth_roles,
     ) :
     {
       # Work around https://github.com/kubernetes-sigs/aws-iam-authenticator/issues/153
