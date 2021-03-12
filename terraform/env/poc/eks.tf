@@ -41,8 +41,12 @@ module "eks" {
       public_ip            = true
     },
   ]
-}
 
+node_groups_defaults = {
+    ami_type  = "AL2_x86_64"
+    disk_size = 50
+  }
+  
 node_groups = {
     example = {
       desired_capacity = 1
@@ -61,3 +65,5 @@ node_groups = {
       }
     }
   }
+}
+
