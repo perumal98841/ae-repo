@@ -37,8 +37,8 @@ module "eks" {
     {
       name                 = "worker-group-1"
       instance_type        = "t3.small"
-      asg_desired_capacity = 2
-      public_ip            = true
+      asg_desired_capacity = 1
+      public_ip            = false
     },
   ]
 
