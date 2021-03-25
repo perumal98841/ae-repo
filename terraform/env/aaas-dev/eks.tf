@@ -30,8 +30,8 @@ module "eks" {
   source          = "../../modules/eks"
   cluster_name    = local.cluster_name
   cluster_version = "1.19"
-  subnets         = module.authengine_poc_vpc.private_subnets
-  vpc_id          = module.authengine_poc_vpc.vpc_id
+  subnets         = ["subnet-0b1b2d7dbd4e429e0","subnet-0d7c1f6c7b2f3d70f","subnet-0c18b10dbd3fc9ed4"]
+  vpc_id          = "vpc-06505f0235ed6028c"
 
   worker_groups_launch_template = [
     {
