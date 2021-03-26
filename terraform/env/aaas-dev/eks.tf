@@ -43,6 +43,7 @@ module "eks" {
       instance_type        = "t3a.small"
       asg_desired_capacity = 1
       public_ip            = false
+      key_name             = "iams-aaas-dev-eu"
     },
   ]
 
