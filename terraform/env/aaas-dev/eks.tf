@@ -22,7 +22,7 @@ data "aws_availability_zones" "available" {
 }
 
 locals {
-  cluster_name = "authengine-eks-${random_string.suffix.result}"
+  cluster_name = "aaas-eks-${random_string.suffix.result}"
 }
 
 resource "random_string" "suffix" {
@@ -40,34 +40,45 @@ module "eks" {
   worker_groups_launch_template = [
     {
       name                 = "worker-group-1"
-      instance_type        = "t3.small"
+      instance_type        = "t3a.small"
       asg_desired_capacity = 1
       public_ip            = false
     },
   ]
+worker_groups_launch_template = [
+    {
+      name                    = "spot-1"
+      override_instance_types = ["t3a.small"]
+      spot_instance_pools     = 4
+      asg_max_size            = 5
+      asg_desired_capacity    = 1
+      kubelet_extra_args      = "--node-labels=node.kubernetes.io/lifecycle=spot"
+      public_ip               = false
+    },
+  ]
 
-node_groups_defaults = {
-    ami_type  = "AL2_x86_64"
-    disk_size = 30
-  }
-  
-node_groups = {
-    example = {
-      desired_capacity = 1
-      max_capacity     = 10
-      min_capacity     = 1
-
-      instance_types = ["t3a.small"]
-      capacity_type  = "SPOT"
-      k8s_labels = {
-        Environment = "test"
-        GithubRepo  = "terraform-aws-eks"
-        GithubOrg   = "terraform-aws-modules"
-      }
-      additional_tags = {
-        ExtraTag = "example"
-      }
-    }
-  }
+#node_groups_defaults = {
+#    ami_type  = "AL2_x86_64"
+#    disk_size = 30
+#  }
+#  
+#node_groups = {
+#    example = {
+#      desired_capacity = 1
+#      max_capacity     = 10
+#      min_capacity     = 1
+#
+#      instance_types = ["t3a.small"]
+#      capacity_type  = "SPOT"
+#      k8s_labels = {
+#        Environment = "test"
+#        GithubRepo  = "terraform-aws-eks"
+#        GithubOrg   = "terraform-aws-modules"
+#      }
+#      additional_tags = {
+#        ExtraTag = "example"
+#      }
+#    }
+#  }
 }
 
