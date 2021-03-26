@@ -45,17 +45,6 @@ module "eks" {
       public_ip            = false
     },
   ]
-worker_groups_launch_template = [
-    {
-      name                    = "spot-1"
-      override_instance_types = ["t3a.small"]
-      spot_instance_pools     = 4
-      asg_max_size            = 5
-      asg_desired_capacity    = 1
-      kubelet_extra_args      = "--node-labels=node.kubernetes.io/lifecycle=spot"
-      public_ip               = false
-    },
-  ]
 
 #node_groups_defaults = {
 #    ami_type  = "AL2_x86_64"
