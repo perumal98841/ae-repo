@@ -40,8 +40,8 @@ module "eks" {
   worker_groups_launch_template = [
     {
       name                 = "worker-group-1"
-      instance_type        = "t3a.small"
-      asg_desired_capacity = 1
+      instance_type        = "t3a.large"
+      asg_desired_capacity = 2
       public_ip            = false
       key_name             = "iams-aaas-dev-eks"
     },
